@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Holz Etiketten</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+    <!-- Nur für die Vorschau im Browser -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+</head>
+
+<body>
+
+<div class="app">
+
+    <div class="header">
+
+        <div>
+            <h1>Holz Etiketten</h1>
+
+            <div class="subtitle">
+                TOSHIBA B-EX4T2 / B-EX4D2 · 203 dpi
+            </div>
+        </div>
+
+        <div id="printerStatus"
+             class="printer-status disconnected">
+
+            Kein Drucker verbunden
+
+        </div>
+
+    </div>
+
+
+    <div class="form-grid">
+
+        <div class="input-group">
+
+            <label for="hub">
+                Hub Nummer
+            </label>
+
+            <input
+                type="text"
+                id="hub"
+                placeholder="z.B. 12343"
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="holzart">
+                Holzart
+            </label>
+
+            <input
+                type="text"
+                id="holzart"
+                placeholder="z.B. NUA"
+                maxlength="3"
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="qualitaet">
+                Qualität
+            </label>
+
+            <input
+                type="text"
+                id="qualitaet"
+                placeholder="z.B. AB"
+                maxlength="2"
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="staerke">
+                Stärke in mm
+            </label>
+
+            <input
+                type="number"
+                id="staerke"
+                placeholder="z.B. 40"
+                min="1"
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="laenge">
+                Länge in m
+            </label>
+
+            <input
+                type="number"
+                id="laenge"
+                placeholder="z.B. 3.6"
+                step="0.01"
+                min="0.01"
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="breite">
+                Breite in cm
+            </label>
+
+            <input
+                type="number"
+                id="breite"
+                placeholder="z.B. 33"
+                min="1"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="button-row">
+
+        <button
+            id="connectBtn"
+            class="connect-button"
+        >
+            Drucker verbinden
+        </button>
+
+
+        <button
+            id="generateBtn"
+            class="secondary-button"
+        >
+            Vorschau aktualisieren
+        </button>
+
+
+        <button
+            id="printBtn"
+            class="print-button"
+            disabled
+        >
+            Etikett drucken
+        </button>
+
+
+        <button
+            id="nextBtn"
+            class="secondary-button"
+        >
+            Neue Holz-ID
+        </button>
+
+    </div>
+
+
+    <div id="message"
+         class="message">
+    </div>
+
+
+    <div class="preview-header">
+
+        <h2>Vorschau</h2>
+
+        <div class="current-id-box">
+            Holz-ID:
+            <strong id="currentId">01</strong>
+        </div>
+
+    </div>
+
+
+    <div class="preview-area">
+
+        <div id="label">
+
+            <div class="label-top">
+
+                <div id="labelHub">
+                    12343-01
+                </div>
+
+                <div id="labelHolzart">
+                    NUA
+                </div>
+
+            </div>
+
+
+            <div class="label-second">
+
+                <div id="labelQualitaet">
+                    AB
+                </div>
+
+                <div id="labelDimensions">
+                    40mm x 3,6m x 33cm
+                </div>
+
+            </div>
+
+
+            <div class="barcode-area">
+
+                <svg id="barcode"></svg>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="barcode-content">
+
+        <span>Barcode:</span>
+
+        <code id="barcodeValueDisplay">
+            -
+        </code>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
