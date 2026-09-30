@@ -4,249 +4,271 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Holz Etiketten</title>
 
-    <link rel="stylesheet"
-          href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
-    <!-- Nur für die Vorschau im Browser -->
-    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js">
+    </script>
 </head>
 
 <body>
 
 <div class="app">
 
-    <div class="header">
+    <header class="app-header">
 
         <div>
             <h1>Holz Etiketten</h1>
 
-            <div class="subtitle">
-                TOSHIBA B-EX4T2 / B-EX4D2 · 203 dpi
-            </div>
+            <p>
+                TOSHIBA B-EX4T2 · 110 × 35 mm
+            </p>
         </div>
 
-        <div id="printerStatus"
-             class="printer-status disconnected">
-
-            Kein Drucker verbunden
-
-        </div>
-
-    </div>
-
-
-    <div class="form-grid">
-
-        <div class="input-group">
-
-            <label for="hub">
-                Hub Nummer
-            </label>
-
-            <input
-                type="text"
-                id="hub"
-                placeholder="z.B. 12343"
-                autocomplete="off"
-            >
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label for="holzart">
-                Holzart
-            </label>
-
-            <input
-                type="text"
-                id="holzart"
-                placeholder="z.B. NUA"
-                maxlength="3"
-                autocomplete="off"
-            >
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label for="qualitaet">
-                Qualität
-            </label>
-
-            <input
-                type="text"
-                id="qualitaet"
-                placeholder="z.B. AB"
-                maxlength="2"
-                autocomplete="off"
-            >
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label for="staerke">
-                Stärke in mm
-            </label>
-
-            <input
-                type="number"
-                id="staerke"
-                placeholder="z.B. 40"
-                min="1"
-            >
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label for="laenge">
-                Länge in m
-            </label>
-
-            <input
-                type="number"
-                id="laenge"
-                placeholder="z.B. 3.6"
-                step="0.01"
-                min="0.01"
-            >
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label for="breite">
-                Breite in cm
-            </label>
-
-            <input
-                type="number"
-                id="breite"
-                placeholder="z.B. 33"
-                min="1"
-            >
-
-        </div>
-
-    </div>
-
-
-    <div class="button-row">
-
-        <button
-            id="connectBtn"
-            class="connect-button"
-        >
-            Drucker verbinden
-        </button>
-
-
-        <button
-            id="generateBtn"
-            class="secondary-button"
-        >
-            Vorschau aktualisieren
-        </button>
-
-
-        <button
-            id="printBtn"
-            class="print-button"
-            disabled
-        >
-            Etikett drucken
-        </button>
-
-
-        <button
-            id="nextBtn"
-            class="secondary-button"
-        >
-            Neue Holz-ID
-        </button>
-
-    </div>
-
-
-    <div id="message"
-         class="message">
-    </div>
-
-
-    <div class="preview-header">
-
-        <h2>Vorschau</h2>
-
-        <div class="current-id-box">
-            Holz-ID:
+        <div class="id-box">
+            Nächste Holz-ID:
             <strong id="currentId">01</strong>
         </div>
 
-    </div>
+    </header>
 
 
-    <div class="preview-area">
+    <main>
 
-        <div id="label">
+        <!-- ===================================
+             EINGABEN
+        ==================================== -->
 
-            <div class="label-top">
+        <section class="form-card">
 
-                <div id="labelHub">
-                    12343-01
+            <div class="form-grid">
+
+                <div class="input-group">
+
+                    <label for="hub">
+                        Hub Nummer
+                    </label>
+
+                    <input
+                        id="hub"
+                        type="text"
+                        placeholder="z.B. 12343"
+                        autocomplete="off"
+                    >
+
                 </div>
 
-                <div id="labelHolzart">
-                    NUA
+
+                <div class="input-group">
+
+                    <label for="holzart">
+                        Holzart
+                    </label>
+
+                    <input
+                        id="holzart"
+                        type="text"
+                        maxlength="3"
+                        placeholder="z.B. NUA"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="qualitaet">
+                        Qualität
+                    </label>
+
+                    <input
+                        id="qualitaet"
+                        type="text"
+                        maxlength="2"
+                        placeholder="z.B. AB"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="staerke">
+                        Stärke in mm
+                    </label>
+
+                    <input
+                        id="staerke"
+                        type="number"
+                        min="1"
+                        step="1"
+                        placeholder="z.B. 40"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="laenge">
+                        Länge in m
+                    </label>
+
+                    <input
+                        id="laenge"
+                        type="number"
+                        min="0.01"
+                        step="0.01"
+                        placeholder="z.B. 3.6"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="breite">
+                        Breite in cm
+                    </label>
+
+                    <input
+                        id="breite"
+                        type="number"
+                        min="1"
+                        step="1"
+                        placeholder="z.B. 33"
+                    >
+
                 </div>
 
             </div>
 
-
-            <div class="label-second">
-
-                <div id="labelQualitaet">
-                    AB
-                </div>
-
-                <div id="labelDimensions">
-                    40mm x 3,6m x 33cm
-                </div>
-
-            </div>
+        </section>
 
 
-            <div class="barcode-area">
+        <!-- ===================================
+             BUTTONS
+        ==================================== -->
 
-                <svg id="barcode"></svg>
+        <div class="button-row">
 
-            </div>
+            <button
+                id="generateBtn"
+                class="secondary-button"
+            >
+                Vorschau aktualisieren
+            </button>
+
+
+            <button
+                id="printBtn"
+                class="print-button"
+            >
+                Etikett drucken
+            </button>
+
+
+            <button
+                id="nextBtn"
+                class="secondary-button"
+            >
+                Neue Holz-ID
+            </button>
 
         </div>
 
-    </div>
+
+        <div
+            id="message"
+            class="message"
+        ></div>
 
 
-    <div class="barcode-content">
+        <!-- ===================================
+             VORSCHAU
+        ==================================== -->
 
-        <span>Barcode:</span>
+        <section class="preview-section">
 
-        <code id="barcodeValueDisplay">
-            -
-        </code>
+            <h2>Vorschau</h2>
 
-    </div>
+            <div class="preview-area">
+
+                <!--
+                    DAS HIER IST DAS TATSÄCHLICHE
+                    110 × 35 MM ETIKETT
+                -->
+
+                <div id="label">
+
+                    <!-- ERSTE ZEILE -->
+
+                    <div class="label-top">
+
+                        <div id="labelHub">
+                            12343-01
+                        </div>
+
+                        <div id="labelHolzart">
+                            NUA
+                        </div>
+
+                    </div>
+
+
+                    <!-- ZWEITE ZEILE -->
+
+                    <div class="label-second">
+
+                        <div id="labelQualitaet">
+                            AB
+                        </div>
+
+                        <div id="labelDimensions">
+                            40mm x 3,6m x 33cm
+                        </div>
+
+                    </div>
+
+
+                    <!-- BARCODE -->
+
+                    <div class="barcode-area">
+
+                        <svg id="barcode"></svg>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="barcode-info">
+
+                Barcode:
+
+                <code id="barcodeValueDisplay">
+                    -
+                </code>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </div>
 
@@ -254,5 +276,4 @@
 <script src="script.js"></script>
 
 </body>
-
 </html>
